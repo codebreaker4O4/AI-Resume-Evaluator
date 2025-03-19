@@ -2,11 +2,13 @@ from flask import Flask, request, render_template
 from openai import OpenAI
 from PyPDF2 import PdfReader
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
+api_key=os.getenv("API_KEY")
 
 app = Flask(__name__)
 base_url = "https://api.aimlapi.com/v1"
-api_key = "4c0de60ff78b462aa1b15812f6d4a263"
 system_prompt = "You are a resume evaluator."
 user_prompt = "Analyze this resume under the following categories: 1. Skills: Identify key strengths. 2. Experience: Assess relevance and clarity. 3. Formatting: Suggest improvements. 4. Language: Correct grammar and tone."
 api = OpenAI(api_key=api_key, base_url=base_url)
